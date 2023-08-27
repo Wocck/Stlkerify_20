@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Stalkerify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-image: url('/media/Main Page.png');
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: rgba(27, 114, 6, 0.66);
+            background-attachment: fixed;
+        }
+
+        form {
+            max-width: 42%;
+            max-height: 100%;
+            padding: 20px;
+            background-color: rgb(64, 186, 156);
+            border-radius: 10px;
+            margin-left: 50px;
+            margin-right: 500px;
+        }
+
+        label {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            margin-top: 5px;
+            height: 30px;
+            width: 150px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            margin-left: 15px;
+            border: 2px solid rgba(8, 29, 150, 0.7);
+        }
+
+        input[type="submit"] {
+            background-color: rgba(103, 226, 255, 0.75);
+            color: rgb(45, 13, 13);
+            border: 3px solid #001e9f;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            margin: 0 auto 20px auto;
+            display: block;
+        }
+
+        button {
+            background-color: rgba(90, 186, 206, 0.78);
+            margin-left: 50px;
+            width: 150px;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .track-photo {
+            max-width: 10%;
+            height: auto;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-radius: 5px;
+        }
+
+        .form-element {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-element div {
+            display: flex;
+            align-items: center;
+            min-width: 90%;
+        }
+
+        .form-element img {
+            margin-top: 1px;
+        }
+
+        .form-element label {
+            max-width: 80%;
+        }
+         @media screen and (max-width: 768px) {
+             body {
+                background-image: url('/media/choose page Mobile.png');
+                background-size: auto;
+                background-position: top center;
+                background-repeat: repeat-y;
+             }
+             form {
+                 max-width: 90%;
+                 max-height: 120%;
+                 padding: 20px;
+                 background-color: rgb(64, 186, 156);
+                 border-radius: 10px;
+                 margin-top: 2%;
+                 margin-left: 2%;
+                 margin-right: 2%;
+             }
+
+             .track-photo {
+                 max-width: 10%;
+                 height: auto;
+                 margin-left: 10px;
+                 margin-right: 5px;
+                 border-radius: 5px;
+            }
+         }
+    </style>
+</head>
+<body>
+<div>
+    <form method="post" action="{% url 'render_choose_result_site' %}">
+        {% csrf_token %}
+        <h1>Choose Track...</h1>
+        <input type="hidden" name="user-p-link" value="{{ user_id }}">
+        {% for result in results %}
+            <div class="form-element">
+                <div>
+                    <input type="radio" name="track-id" value="{{ result.track_id }}">
+                    <label>{{ result.track_name }} by {{ result.artist_name }}</label>
+                </div>
+                {% if result.track_photo %}
+                    <img src="{{ result.track_photo }}" alt="Track Photo" class="track-photo">
+                {% endif %}
+        </div>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

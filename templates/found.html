@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Stalkerify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            background-image: url('/media/Main Page.png');
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: rgba(27, 114, 6, 0.66);
+            background-attachment: fixed;
+        }
+        form {
+            max-width: 550px;
+            max-height: 550px;
+            padding: 1px;
+            background-color: rgb(64, 186, 156);
+            border-radius: 10px;
+            margin-left: 40px;
+            margin-top: 50px;
+        }
+        label {
+            display: block;
+            margin-left: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .highlight {
+            color: #10147c;
+        }
+        .gif-container {
+            display: flex;
+            margin-left: 40px;
+        }
+        .gif-container .tenor-gif-embed {
+            max-width: 80%;
+            width: 45%;
+            margin-top: 40px;
+            background-color: rgba(132, 202, 217, 0.77);
+            border: 10px solid #3a55c4;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(66, 225, 231, 0.53);
+        }
+
+        @media screen and (max-width: 768px) {
+             body {
+                background-image: url('/media/found page mobile.png');
+                background-size: auto;
+                background-position: top center;
+                background-repeat: repeat-y;
+             }
+             form {
+                max-width: 70%;
+                margin-left: 2%;
+                margin-top: 2%;
+                margin-right: 2%;
+             }
+
+             .gif-container {
+                 display: flex;
+                 margin-left: 5%;
+             }
+             .gif-container .tenor-gif-embed {
+                 width: 90%;
+                 margin-left: 10%;
+                 margin-right: 10%;
+             }
+         }
+    </style>
+</head>
+<body>
+    <form>
+        {% csrf_token %}
+        <h1 style="margin-left: 10px; text-align: center">User <span class="highlight">{{ user_name }}</span> is already listening to this song!</h1>
+        <label>
+            <p style="margin-left: 10px; text-align: left">Track <span class="highlight">{{ track_name }}</span> by <span class="highlight">{{ artist_name }}</span> Found on Playlist <span class="highlight">{{ playlist_name }}</span></p>
+        </label>
+    </form>
+    <p> </p>
+    <div class="gif-container">
+    <div class="tenor-gif-embed" data-postid="15508942" data-share-method="host" data-aspect-ratio="1.53846"><a href="https://tenor.com/view/no-nope-ive-heard-it-all-before-head-shaking-no-way-gif-15508942">No Nope GIF</a>from <a href="https://tenor.com/search/no-gifs">No GIFs</a></div>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    </div>
+</body>
+</html>
